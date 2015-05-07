@@ -6,7 +6,7 @@ module TConsole
     # Public: Sets up the new runner's config.
     def initialize(mode, argv = [])
       self.mode = mode
-      
+
       # try to load the default configs
       Config.load_config(File.join(Dir.home, ".#{Config.app(mode)}"))
       Config.load_config(File.join(Dir.pwd, ".#{Config.app(mode)}"))
@@ -14,7 +14,7 @@ module TConsole
       self.reporter = Reporter.new(config)
     end
 
-    # Spawns a new environment. Looks at the results of the environment to determine 
+    # Spawns a new environment. Looks at the results of the environment to determine
     # whether to stop or keep running
     def run
       prepare_process
@@ -110,7 +110,7 @@ module TConsole
     # Internal: Run loop for the server.
     def server_run_loop(pipe_server)
       pipe_server.callee!
-      
+
       if mode == :minitest
         server = MinitestServer.new(config, reporter)
       elsif mode == :rspec

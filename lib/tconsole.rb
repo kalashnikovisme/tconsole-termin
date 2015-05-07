@@ -4,7 +4,8 @@ require "chattyproc"
 require "optparse"
 require "readline"
 require "benchmark"
-require "term/ansicolor"
+require "termin/ansicolor"
+
 require "shellwords"
 
 require "tconsole/config"

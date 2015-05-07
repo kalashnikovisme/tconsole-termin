@@ -2,7 +2,7 @@ module TConsole
   class Config
     # Lets us know if we're running rspec or minitest
     attr_accessor :mode
-    
+
     # Lets us know if we should include trace output
     attr_accessor :trace_execution
 
@@ -42,9 +42,9 @@ module TConsole
 
     def initialize(mode, argv = [])
       self.mode = mode
-      
+
       self.trace_execution = false
-      
+
       if mode == :rspec
         self.test_dir = "spec"
         self.include_paths = ["./spec", "./lib"]
@@ -52,15 +52,15 @@ module TConsole
         self.test_dir = "test"
         self.include_paths = ["./test", "./lib"]
       end
-      
+
       self.preload_paths = []
       self.fail_fast = false
-      
-      if mode == :rspec        
+
+      if mode == :rspec
         self.file_sets = {
           "all" => ["#{test_dir}/**/*_spec.rb"]
         }
-        
+
         # build file sets dynamically based on directories under the test
         # directory
         sets = Dir.entries(test_dir).select {|entry| File.directory?(File.join(test_dir,entry)) and !(entry =='.' || entry == '..') }
@@ -83,7 +83,7 @@ module TConsole
       @cached_suite_counts = {}
       @cached_elements = {}
     end
-    
+
     # Returns the string name of our current app, i.e. tconsole or rconsole
     def app
       Config.app(mode)
@@ -192,7 +192,7 @@ module TConsole
 
       if is_rails?
         config.preload_paths = ["./config/application"]
-        
+
         if mode == :minitest
           config.include_paths = ["./test"]
           config.file_sets = {
@@ -238,7 +238,7 @@ module TConsole
     def self.is_rails?
       @rails ||= !!File.exist?("./config/application.rb")
     end
-    
+
     # Public: Returns the app name based on the given mode.
     def self.app(mode)
       mode == :minitest ? "tconsole" : "rconsole"

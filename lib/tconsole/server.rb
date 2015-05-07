@@ -7,7 +7,7 @@ module TConsole
       self.reporter = reporter
       self.last_result = TConsole::TestResult.new
     end
-    
+
     # Internal: Outputs a message that a feature hasn't been implemented
     def not_implemented
       reporter.error("This feature hasn't been implemented yet.")

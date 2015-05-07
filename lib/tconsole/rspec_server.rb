@@ -23,7 +23,7 @@ module TConsole
 
           # Make sure rspec is loaded up
           require 'rspec'
-          
+
           paths.each do |path|
             reporter.trace("Requested path `#{path}` doesn't exist.") unless File.exist?(path)
             require File.expand_path(path)
@@ -36,7 +36,7 @@ module TConsole
           result = nil
           if defined?(::RSpec)
             reporter.trace("Detected rspec.")
-            
+
             reporter.trace("Running tests.")
 
             # Handle trapping interrupts
@@ -44,29 +44,29 @@ module TConsole
               reporter.warn
               reporter.warn("Trapped interrupt. Halting tests.")
             end
-            
+
             # Actually run the tests!
             configuration = RSpec::configuration
             world = RSpec::world
             options = RSpec::Core::ConfigurationOptions.new([])
             options.parse_options
-            
+
             configuration.error_stream = STDERR
             configuration.output_stream = STDOUT
-            
+
             options.configure(configuration)
-            
+
             configuration.files_to_run = paths
-            
+
             configuration.reporter.report(world.example_count, configuration.randomize? ? configuration.seed : nil) do |reporter|
                 begin
                     configuration.run_hook(:before, :suite)
                     world.example_groups.ordered.map {|g| g.run(reporter)}.all? ? 0 : configuration.failure_exit_code
                 ensure
                     configuration.run_hook(:after, :suite)
-                end    
+                end
             end
-            
+
             # Patch RSpec to disable autorun
             ::RSpec::Core::Runner.class_eval do
               def self.run(args = [], err=$stderr, out=$stdout)
