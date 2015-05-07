@@ -37,8 +37,8 @@ module TConsole
           end
 
           if !suite_printed && (match_patterns.nil? || match_patterns.empty? || !match.nil?)
-            print(::Term::ANSIColor.cyan, suite, ::Term::ANSIColor.reset,
-                  ::Term::ANSIColor.magenta, " #{suite_id} \n")
+            print(::Termin::ANSIColor.cyan, suite, ::Termin::ANSIColor.reset,
+                  ::Termin::ANSIColor.magenta, " #{suite_id} \n")
             suite_printed = true
           end
 
@@ -90,4 +90,4 @@ module TConsole
 end
 
 # Make sure that output is only colored when it should be
-Term::ANSIColor::coloring = STDOUT.isatty
+Termin::ANSIColor::coloring = STDOUT.isatty

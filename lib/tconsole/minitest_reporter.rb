@@ -167,7 +167,7 @@ module TConsole
     def record(test)
       super
       # TODO хорошо бы избавиться от @current_element_id
-      str = "#{::Term::ANSIColor.magenta(@current_element_id)} #{colored_string(test.name, test)}"
+      str = "#{::Termin::ANSIColor.magenta(@current_element_id)} #{colored_string(test.name, test)}"
       print pad_test(str)
       print_colored_status(test)
       print(" (%.2fs)" % test.time)
@@ -184,11 +184,11 @@ module TConsole
 
     def colored_string(str, test)
       if test.passed?
-        ::Term::ANSIColor.green(str)
+        ::Termin::ANSIColor.green(str)
       elsif test.skipped?
-        ::Term::ANSIColor.yellow(str)
+        ::Termin::ANSIColor.yellow(str)
       else
-        ::Term::ANSIColor.red(str)
+        ::Termin::ANSIColor.red(str)
       end
     end
 
