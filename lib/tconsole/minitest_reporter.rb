@@ -38,7 +38,7 @@ module TConsole
     end
 
     def report
-      super
+      #super
       after_suite(tests.last.class)
     end
 
