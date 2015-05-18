@@ -206,7 +206,12 @@ module TConsole
             "models" => ["#{config.test_dir}/models/**/*_test.rb"],
             "decorators" => ["#{config.test_dir}/decorators/**/*_test.rb"],
             "controllers" => ["#{config.test_dir}/controllers/**/*_test.rb"],
-            "integration" => ["#{config.test_dir}/integration/**/*_test.rb"]
+            "integration" => ["#{config.test_dir}/integration/**/*_test.rb"],
+            "engines" => ["engines/**/#{config.test_dir}/controllers/**/_test.rb",
+                          "engines/**/#{config.test_dir}/models/**/_test.rb",
+                          "engines/**/#{config.test_dir}/decorators/**/_test.rb",
+                          "engines/**/#{config.test_dir}/intergration/**/_test.rb"
+                         ]
           }
         end
 
